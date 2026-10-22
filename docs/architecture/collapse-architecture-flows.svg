@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1280" viewBox="0 0 1800 1280" role="img" aria-labelledby="title desc">
+<title id="title">Collapse — потоки данных и владельцы состояния</title>
+<desc id="desc">Три независимых сценария: durable outbox, история и окно сообщений, медиагалерея. Внизу указаны владельцы навигации, viewport, активности и локального поиска.</desc>
+<rect x="0" y="0" width="1800" height="1280" rx="0" fill="#F8FAFC" stroke="none" stroke-width="1.4"/>
+<text x="64" y="72" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" fill="#1D2939" text-anchor="start">Как проходят данные</text>
+<text x="64" y="116" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#526377" text-anchor="start">Три отдельных контура: доставка сообщения, чтение истории и просмотр медиа.</text>
+<text x="1736" y="53" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#526377" text-anchor="end">10 ОКТЯБРЯ 2026</text>
+<text x="1736" y="82" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#526377" text-anchor="end">2 / 2</text>
+<path d="M 64 137 L 1736 137" fill="none" stroke="#C9D3DE" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="64" y="163" width="1672" height="253" rx="12" fill="#F3EFF9" stroke="#C9D3DE" stroke-width="1.4"/>
+<text x="88" y="194" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#7356A5" text-anchor="start">A  ОТПРАВКА СООБЩЕНИЯ</text>
+<text x="1712" y="194" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#526377" text-anchor="end">Сначала локальный commit, затем сеть</text>
+<rect x="88" y="215" width="292" height="124" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="88" y="215" width="5" height="124" rx="2" fill="#7356A5" stroke="none" stroke-width="1.4"/>
+<text x="108" y="250" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#7356A5" text-anchor="start">Композиция</text>
+<text x="108" y="282" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">ChatScreen → ChatCubit</text>
+<text x="108" y="309" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Markdown → Drafty</text>
+<rect x="424" y="215" width="292" height="124" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="424" y="215" width="5" height="124" rx="2" fill="#7356A5" stroke="none" stroke-width="1.4"/>
+<text x="444" y="250" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#7356A5" text-anchor="start">Локальная запись</text>
+<text x="444" y="282" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">ChatsRepository → Drift</text>
+<text x="444" y="309" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Сообщение + байты + outbox</text>
+<rect x="760" y="215" width="292" height="124" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="760" y="215" width="5" height="124" rx="2" fill="#7356A5" stroke="none" stroke-width="1.4"/>
+<text x="780" y="250" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#7356A5" text-anchor="start">Outbox worker</text>
+<text x="780" y="282" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Внутри ChatsRepository</text>
+<text x="780" y="309" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Читает очередь из Drift</text>
+<rect x="1096" y="215" width="292" height="124" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="1096" y="215" width="5" height="124" rx="2" fill="#7356A5" stroke="none" stroke-width="1.4"/>
+<text x="1116" y="250" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#7356A5" text-anchor="start">TinodeGateway</text>
+<text x="1116" y="282" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">HTTP upload → refs</text>
+<text x="1116" y="309" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">WS publish + attachments</text>
+<rect x="1432" y="215" width="280" height="124" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="1432" y="215" width="5" height="124" rx="2" fill="#7356A5" stroke="none" stroke-width="1.4"/>
+<text x="1452" y="250" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#7356A5" text-anchor="start">ACK / echo</text>
+<text x="1452" y="282" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Атомарный merge в Drift</text>
+<text x="1452" y="309" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">client ID остаётся прежним</text>
+<path d="M 380 277 L 424 277" fill="none" stroke="#7356A5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="424,277 413.0,272.2 413.0,281.8" fill="#7356A5"/>
+<path d="M 716 277 L 760 277" fill="none" stroke="#7356A5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="760,277 749.0,272.2 749.0,281.8" fill="#7356A5"/>
+<path d="M 1052 277 L 1096 277" fill="none" stroke="#7356A5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1096,277 1085.0,272.2 1085.0,281.8" fill="#7356A5"/>
+<path d="M 1388 277 L 1432 277" fill="none" stroke="#7356A5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1432,277 1421.0,272.2 1421.0,281.8" fill="#7356A5"/>
+<path d="M 738 211 L 738 350" fill="none" stroke="#7356A5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<rect x="619" y="348" width="164.78125" height="26" rx="4" fill="#F8FAFC" stroke="none" stroke-width="1.4"/>
+<text x="626" y="367" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#7356A5" text-anchor="start">граница сохранения</text>
+<text x="88" y="395" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#526377" text-anchor="start">Очередь переживает рестарт и закрытие экрана. После commit UI получает обновление; доставка не ждёт отрисовки.</text>
+<text x="1432" y="366" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#526377" text-anchor="start">ACK = подтверждение</text>
+<text x="1432" y="392" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#526377" text-anchor="start">Exactly-once не гарантируется</text>
+<rect x="64" y="443" width="1672" height="288" rx="12" fill="#EDF4FC" stroke="#C9D3DE" stroke-width="1.4"/>
+<text x="88" y="474" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#2663A5" text-anchor="start">B  ИСТОРИЯ И ОКНО ЧАТА</text>
+<text x="1712" y="474" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#526377" text-anchor="end">Кеш → готовый снимок → фоновая сверка</text>
+<rect x="88" y="495" width="360" height="127" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="88" y="495" width="5" height="127" rx="2" fill="#2663A5" stroke="none" stroke-width="1.4"/>
+<text x="108" y="530" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#2663A5" text-anchor="start">ChatCubit</text>
+<text x="108" y="562" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">open / older / newer / jump</text>
+<text x="108" y="589" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">Навигация и поколение запроса</text>
+<rect x="496" y="495" width="360" height="127" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="496" y="495" width="5" height="127" rx="2" fill="#2663A5" stroke="none" stroke-width="1.4"/>
+<text x="516" y="530" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#2663A5" text-anchor="start">ChatsRepository</text>
+<text x="516" y="562" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">Drift: кеш + известные диапазоны</text>
+<text x="516" y="589" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">При пробеле → Gateway.history</text>
+<rect x="904" y="495" width="360" height="127" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="904" y="495" width="5" height="127" rx="2" fill="#2663A5" stroke="none" stroke-width="1.4"/>
+<text x="924" y="530" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#2663A5" text-anchor="start">ChatCubit: HistoryWindow</text>
+<text x="924" y="562" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">Страница 40 · окно до 120</text>
+<text x="924" y="589" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">Готовый согласованный снимок</text>
+<rect x="1312" y="495" width="400" height="127" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="1312" y="495" width="5" height="127" rx="2" fill="#2663A5" stroke="none" stroke-width="1.4"/>
+<text x="1332" y="530" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#2663A5" text-anchor="start">MessageList</text>
+<text x="1332" y="562" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">flutter_list_view: ключи и позиция</text>
+<text x="1332" y="589" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">MessageLayout: геометрия текста</text>
+<path d="M 448 558 L 496 558" fill="none" stroke="#2663A5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="496,558 485.0,553.2 485.0,562.8" fill="#2663A5"/>
+<path d="M 856 558 L 904 558" fill="none" stroke="#2663A5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="904,558 893.0,553.2 893.0,562.8" fill="#2663A5"/>
+<path d="M 1264 558 L 1312 558" fill="none" stroke="#2663A5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1312,558 1301.0,553.2 1301.0,562.8" fill="#2663A5"/>
+<text x="88" y="658" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#526377" text-anchor="start">Из окна можно вытеснить строки; из SQLite они не удаляются. Неизвестный офлайн-пробел = blocked.</text>
+<text x="88" y="699" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#2663A5" text-anchor="start">READ</text>
+<text x="166" y="699" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#526377" text-anchor="start">Видимое входящее + активные app / route / pane → ChatCubit → ChatsRepository → Drift + gateway.note</text>
+<rect x="64" y="758" width="1672" height="246" rx="12" fill="#EBF6F1" stroke="#C9D3DE" stroke-width="1.4"/>
+<text x="88" y="789" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#247D63" text-anchor="start">C  МЕДИА: МЕТАДАННЫЕ ОТДЕЛЬНО ОТ БАЙТОВ</text>
+<text x="1712" y="789" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#526377" text-anchor="end">Независимо от ChatCubit; офлайн-кеш частичный</text>
+<rect x="88" y="810" width="360" height="127" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="88" y="810" width="5" height="127" rx="2" fill="#247D63" stroke="none" stroke-width="1.4"/>
+<text x="108" y="845" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#247D63" text-anchor="start">Атлас / просмотрщик</text>
+<text x="108" y="877" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">MediaAtlas / MediaViewer</text>
+<text x="108" y="904" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">MediaGalleryCubit: свои курсоры</text>
+<rect x="496" y="810" width="360" height="127" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="496" y="810" width="5" height="127" rx="2" fill="#247D63" stroke="none" stroke-width="1.4"/>
+<text x="516" y="845" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#247D63" text-anchor="start">MediaGalleryRepository</text>
+<text x="516" y="877" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">Кеш метаданных: MediaEntries</text>
+<text x="516" y="904" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">Пакет media через chats.gateway</text>
+<rect x="904" y="810" width="360" height="127" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="904" y="810" width="5" height="127" rx="2" fill="#247D63" stroke="none" stroke-width="1.4"/>
+<text x="924" y="845" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#247D63" text-anchor="start">gateway.media → Tinode</text>
+<text x="924" y="877" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">get.what=media → meta.media</text>
+<text x="924" y="904" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">ACL + индексы PostgreSQL</text>
+<rect x="1312" y="810" width="400" height="127" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="1312" y="810" width="5" height="127" rx="2" fill="#247D63" stroke="none" stroke-width="1.4"/>
+<text x="1332" y="845" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#247D63" text-anchor="start">MediaRepository</text>
+<text x="1332" y="877" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">Оригиналы: auth HTTP + кеш</text>
+<text x="1332" y="904" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#526377" text-anchor="start">Native: диск · Web: RAM</text>
+<path d="M 448 873 L 496 873" fill="none" stroke="#247D63" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="496,873 485.0,868.2 485.0,877.8" fill="#247D63"/>
+<path d="M 856 873 L 904 873" fill="none" stroke="#247D63" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="904,873 893.0,868.2 893.0,877.8" fill="#247D63"/>
+<path d="M 676 937 L 676 967 L 1290 967 L 1290 873" fill="none" stroke="#247D63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<path d="M 1290 873 L 1312 873" fill="none" stroke="#247D63" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<polygon points="1312,873 1301.0,868.2 1301.0,877.8" fill="#247D63"/>
+<rect x="750" y="953" width="207.05126953125" height="27" rx="4" fill="#F8FAFC" stroke="none" stroke-width="1.4"/>
+<text x="757" y="973" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#247D63" text-anchor="start">при открытии оригинала</text>
+<text x="88" y="977" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#247D63" text-anchor="start">meta.media не меняет историю и read / recv.</text>
+<text x="1332" y="977" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Pending-байты → ChatsRepository</text>
+<text x="64" y="1045" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#526377" text-anchor="start">СКВОЗНОЕ ВЛАДЕНИЕ СОСТОЯНИЕМ</text>
+<rect x="64" y="1061" width="398" height="111" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="64" y="1061" width="5" height="111" rx="2" fill="#526377" stroke="none" stroke-width="1.4"/>
+<text x="84" y="1096" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#526377" text-anchor="start">URL и жизненный цикл</text>
+<text x="84" y="1128" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">GoRouter + ConversationShell</text>
+<text x="84" y="1155" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Resize сохраняет Cubit и черновик</text>
+<rect x="488" y="1061" width="398" height="111" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="488" y="1061" width="5" height="111" rx="2" fill="#526377" stroke="none" stroke-width="1.4"/>
+<text x="508" y="1096" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#526377" text-anchor="start">Окно, позиция, эффекты</text>
+<text x="508" y="1128" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">ChatCubit / MessageList / motion</text>
+<text x="508" y="1155" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Три владельца; эффекты — paint-only</text>
+<rect x="912" y="1061" width="398" height="111" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="912" y="1061" width="5" height="111" rx="2" fill="#526377" stroke="none" stroke-width="1.4"/>
+<text x="932" y="1096" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#526377" text-anchor="start">Активность экрана</text>
+<text x="932" y="1128" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">ViewActivity + route + app</text>
+<text x="932" y="1155" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Скрытие останавливает playback/read</text>
+<rect x="1336" y="1061" width="400" height="111" rx="10" fill="#FFFFFF" stroke="#C9D3DE" stroke-width="1.4"/>
+<rect x="1336" y="1061" width="5" height="111" rx="2" fill="#526377" stroke="none" stroke-width="1.4"/>
+<text x="1356" y="1096" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#526377" text-anchor="start">Поиск по локальному кешу</text>
+<text x="1356" y="1128" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">MessageSearchCubit → ChatsRepository</text>
+<text x="1356" y="1155" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#526377" text-anchor="start">Drift FTS5; свой курсор результатов</text>
+<path d="M 64 1193 L 1736 1193" fill="none" stroke="#C9D3DE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1222" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#526377" text-anchor="start">Непрерывные стрелки — основной ход операции; пунктир — условная ветка. При смене сессии устаревшую работу отсекают generation-проверки.</text>
+<text x="64" y="1250" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#526377" text-anchor="start">Сверено с message_queue.dart, outbox_delivery.dart, chat_cubit.dart, media_gallery_repository.dart, AppDatabase и тестами. Это схема кода, не отчёт о новом прогоне тестов.</text>
+</svg>

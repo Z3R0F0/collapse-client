@@ -1,0 +1,12 @@
+Collapse Tinode adapter
+
+Protocol packet semantics adapted from the Apache-2.0 tinode_box Dart integration
+and the Tinode client protocol.
+The original tinode_box package includes the Apache License, Version 2.0 without
+an additional populated copyright notice.
+
+Tinode JavaScript SDK is an interoperability reference:
+Copyright 2015-2026 Tinode LLC. Apache License, Version 2.0.
+https://github.com/tinode/tinode-js
+
+No Tinode server implementation code is included in this package.
